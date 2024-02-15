@@ -1,13 +1,120 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IMPORTAR FUENTE QUE QUIERA USAR */
+
+body{
+  background-color: rgb(11, 16, 33);
+  /* PONGO LA FUENTE QUE AGREGUE Y OTRAS SECUNDARIAS POR SI LOS NAVEGADORES NO TIENEN ESA FUENTE */
+  font-family: 'Lato', 'Segoe UI', Tahoma, Verdana, sans-serif; 
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.movie{
+  position: relative;
+  overflow: hidden;
 }
+
+.movie:hover .movieImage {
+  filter: brightness(50%);
+}
+
+.movie:hover .movieOverlay {
+  opacity: 1;
+}
+
+.movie:hover{
+  cursor: pointer;
+}
+
+.movieTitle{
+  font-size: 1rem;
+  font-weight: 400;
+  color: white;
+  margin: 0.5em 0;
+  
+  width: 180px;
+}
+
+.movie:hover .movieTitle{
+  color:aqua;
+}
+
+.movieList{
+  display: grid;
+  margin-top: 2em;
+  grid-template-columns: 
+  repeat(
+      auto-fit,
+      minmax(170px, 1fr)
+  );
+  gap: 30px;
+}
+
+.gradient{
+  background: linear-gradient(180deg, #0B1021 0%, rgba(0, 0, 0, 0.00) 25.98%), linear-gradient(0deg, #0B1021 0%, rgba(0, 0, 0, 0.00) 25.72%), linear-gradient(90deg, #0B1021 7.1%, rgba(85, 78, 78, 0.00) 34.5%);
+  
+}
+.gradient-detail{
+  background: linear-gradient(272deg, rgb(11, 16, 33) 14.09%, rgba(0, 0, 0, 0.00) 44.78%), linear-gradient(335deg, rgb(11, 16, 33) 13.05%, rgba(3, 5, 10, 0.26) 31.41%, rgba(0, 0, 0, 0.00) 51.21%), linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.00) 100%), linear-gradient(0deg, rgb(14, 19, 39) 24.78%, rgba(0, 0, 0, 0.00) 100%), linear-gradient(38deg, #0B1021 9.81%, rgba(57, 55, 61, 0.37) 31.34%, rgba(255, 229, 229, 0) 41.52%);
+}
+
+.button-gradient{
+  border-radius: 3.125rem;
+  background: linear-gradient(90deg, #54CCFF 0%, #53FAB5 100%);
+}
+
+.video-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.video-modal {
+  position: relative;
+  width: 80%;
+  max-width: 960px;
+  height: 0;
+  padding-bottom: 56.25%;
+  margin-top: 20%;
+  overflow: hidden;
+}
+
+.video-modal iframe {
+  position: absolute;
+  top: 2;
+  left: 0;
+  width: 100%;
+  height: 50%;
+}
+
+.close-btn{
+  border-radius: 50%;
+  font-size: 1.5rem;
+  height: 34px;
+  width: 35px;
+  padding-bottom: 4px;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+}
+
+.close-btn:hover{
+  background-color: rgba(113, 113, 113, 0.592);
+  border-radius: 50%;
+  
+}
+
+
+
+
