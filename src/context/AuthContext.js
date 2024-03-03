@@ -10,17 +10,44 @@ export function AuthContextProvider({children}) {
     
     function signUp(email,password){
         createUserWithEmailAndPassword(auth, email, password)
-        setDoc(doc(db, 'users', email),{
-            savedShows: []
-        })
+            .then((userCredential) => {
+                // Usuario creado exitosamente
+                const user = userCredential.user;
+                setUser(user);
+                // Establecer el documento en Firestore después de que se crea el usuario
+                setDoc(doc(db, 'users', email),{
+                    savedShows: []
+                });
+            })
+            .catch((error) => {
+                // Manejar errores
+                console.error('Error al crear usuario:', error);
+            });
+        
     }
 
     function logIn(email,password){
         return signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Usuario inició sesión exitosamente
+                const user = userCredential.user;
+                setUser(user);
+            })
+            .catch((error) => {
+                // Manejar errores
+                console.error('Error al iniciar sesión:', error);
+            });
     }
 
     function logOut(){
         return signOut(auth)
+            .then(() => {
+                setUser(null);
+            })
+            .catch((error) => {
+                // Manejar errores
+                console.error('Error al cerrar sesión:', error);
+            });
     }
 
     useEffect(() => {
