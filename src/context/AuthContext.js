@@ -29,13 +29,11 @@ export function AuthContextProvider({children}) {
     function logIn(email,password){
         return signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Usuario inició sesión exitosamente
                 const user = userCredential.user;
                 setUser(user);
             })
             .catch((error) => {
-                // Manejar errores
-                console.error('Error al iniciar sesión:', error);
+                alert('Invalid credentials');
             });
     }
 
@@ -45,7 +43,6 @@ export function AuthContextProvider({children}) {
                 setUser(null);
             })
             .catch((error) => {
-                // Manejar errores
                 console.error('Error al cerrar sesión:', error);
             });
     }
